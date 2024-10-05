@@ -1,0 +1,5 @@
+#backhome
+DOMAIN-SUFFIX,er1czhang.online
+IP-CIDR,192.168.50.0/24,no-resolve
+IP-CIDR,192.168.52.0/24,no-resolve
+IP-CIDR,192.168.55.0/24,no-resolve
