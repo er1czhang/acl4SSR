@@ -1,0 +1,9 @@
+#!name=联通白名单状态修改
+#!desc=修改 checkOfficialWhitePhone 接口返回值，将 0211 改为 0000
+#!author=YourName
+
+[Script]
+http-response ^https:\/\/m\.client\.10010\.com\/edopinterface\/officialWhite\/checkOfficialWhitePhone script-path=https://raw.githubusercontent.com/er1czhang/acl4SSR/refs/heads/main/unicom_white_phone.js, requires-body=true, tag=联通白名单修改
+
+[MITM]
+hostname = m.client.10010.com
