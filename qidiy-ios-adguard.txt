@@ -1,0 +1,14 @@
+! Title: 启迪小说 - iOS AdGuard 站点规则
+! Scope: qidiy.com and subdomains only
+! 基于用户提供的章节 MHTML；未取得原站广告脚本，不包含猜测的广告域名。
+! 拦截第三方脚本和第三方 iframe；第三方正常功能也可能受影响。
+*$script,third-party,domain=qidiy.com
+*$subdocument,third-party,domain=qidiy.com
+! 保留 Cloudflare 验证资源；这不是广告域名白名单。
+@@||challenges.cloudflare.com^$script,subdocument,domain=qidiy.com
+! 移动版页面实测：本站 tj() 注入百度统计脚本；非正文依赖，阻止其加载。
+||hm.baidu.com^$script,domain=qidiy.com
+! 移动版同域动态脚本；阻止其运行，避免其继续注入或触发外跳。
+||qidiy.com/um.js$script
+! 以下一行需要 AdGuard 高级保护和 Safari 扩展权限；拦截本站所有 window.open 调用。
+qidiy.com#%#//scriptlet('prevent-window-open')

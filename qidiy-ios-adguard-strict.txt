@@ -1,0 +1,14 @@
+! Title: 启迪小说 - iOS AdGuard 加强版（与基础版二选一）
+! Scope: qidiy.com and subdomains only
+! 除 Cloudflare 验证脚本外，阻止本站页面加载所有外部 JavaScript 文件，包括同域脚本。
+! 不能禁止 HTML 中的全部内联 JavaScript，不保证拦住所有原标签页跳转。
+! 字号、夜间模式、书签等依赖 JavaScript 的功能可能失效；第三方正常功能也可能受影响。
+*$script,third-party,domain=qidiy.com
+*$subdocument,third-party,domain=qidiy.com
+@@||challenges.cloudflare.com^$script,subdocument,domain=qidiy.com
+||hm.baidu.com^$script,domain=qidiy.com
+||qidiy.com/um.js$script
+qidiy.com#%#//scriptlet('prevent-window-open')
+*$script,domain=qidiy.com
+! 尽量保留 Cloudflare 同域挑战脚本，不放行本站其他脚本。
+@@||qidiy.com/cdn-cgi/$script,domain=qidiy.com
