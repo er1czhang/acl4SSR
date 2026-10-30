@@ -1,0 +1,22 @@
+#!name = LiveContainer Loopback
+#!desc = 原生替换 LocalDev，接管 10.7.0.0/24 虚拟网段回环以支持 LiveContainer JIT 与调试服务
+#!author = Loon
+#!system = iOS,iPadOS
+#!system_version = 15
+#!loon_version = 3.5.1(1007)
+#!tag = 工具,LiveContainer
+
+[General]
+# 1. 强制将 10.7.0.0/24 路由引入 Loon TUN（优先级高于通用私网 bypass）
+include-tun = 10.7.0.0/24
+
+[IP Rewrite]
+# 2. 对 LiveContainer 常用回环地址执行 reflect（回注本机协议栈）
+# LiveContainer 默认主要使用 10.7.0.1 (网关/宿主) 和 10.7.0.2 (本地容器服务)
+10.7.0.1 = reflect
+10.7.0.2 = reflect
+10.7.0.3 = reflect
+
+[Rule]
+# 3. 兜底策略：未命中 reflect 的子网流量直接本地直连，不走代理策略组
+IP-CIDR, 10.7.0.0/24, DIRECT
